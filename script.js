@@ -1,5 +1,6 @@
 // Scene Mesh Camera Renderer
 
+
 //Scene
 const scene = new THREE.Scene();
 
@@ -25,9 +26,19 @@ camera.position.z = 3;
 camera.position.x = 1;
 camera.position.y = 1;
 scene.add(camera);
-
+const clock=new THREE.Clock
 //Renderer
-const canvas = document.querySelector(".draw"); //select the canvas element
+const canvas = document.querySelector(".draw"); 
 const renderer = new THREE.WebGLRenderer({ canvas }); //add the WebGLRenderer
-renderer.setSize(aspect.width, aspect.height); //Renderer size
-renderer.render(scene, camera); //display what the camera in the scene captured
+renderer.setSize(aspect.width, aspect.height); 
+// renderer.render(scene, camera); 
+
+const animate =()=>{
+
+  renderer.render(scene, camera); 
+  const time= clock.getElapsedTime()
+  console.log(time)
+  mesh.rotation.y=time*1;
+  window.requestAnimationFrame(animate)
+}
+animate();
